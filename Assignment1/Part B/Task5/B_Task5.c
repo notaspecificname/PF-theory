@@ -25,20 +25,20 @@ int main() {    //Start of main function
     int zoneB_occupancy;
     int zoneC_occupancy;
 
-    printf("Enter total vehicles\n");
+    printf("Enter total vehicles: ");
     scanf("%d", &total_vehicles);   //Input number of vehicles waiting for parking
 
     for (x = 1; x <= total_vehicles; x++) {         //For loop which will run for the amount of total vehicles
-        printf("Enter Vehicle Type: (C)ar, (B)ike, (V)an\n");
+        printf("Enter Vehicle Type: (C)ar, (B)ike, (V)an\n: ");
         scanf(" %c", &vehicle_type);                //input Vehicle type
 
-        printf("Enter user category: (F)aculty, (S)tudent, (G)uest\n");
+        printf("Enter user category: (F)aculty, (S)tudent, (G)uest\n: ");
         scanf(" %c", &user_cat);                    //Input User Category(Parking zone will be determined using this)
 
-        printf("Valid parking permit?: (Y)es or (N)o\n");
+        printf("Valid parking permit?: (Y)es or (N)o\n: ");
         scanf(" %c", &permit);                      //Valid permit check
 
-        printf("Emergency Vehicle? (Y)es or (N)o\n");
+        printf("Emergency Vehicle? (Y)es or (N)o\n: ");
         scanf(" %c", &emergency);
 
         // Validation of inputs
@@ -68,7 +68,7 @@ int main() {    //Start of main function
                     if (zoneA_cap >= 1) {                                       
                         success = success + 1;                                  //Checks whether Zone A has atleast one available free space. If so, it increments value of success
                         zoneA_cap = zoneA_cap - 1;                              //by one to show parking of vehicle was successful and decrements value of ZoneA capacity to update left 
-                        printf("Remaining Capacity: %d\n", zoneA_cap);          //amount of space. Outputs to park in zone A and increments processed.Adds 1 to count of total standard vehicles.
+                        printf("Remaining Capacity in Zone A: %d\n", zoneA_cap);          //amount of space. Outputs to park in zone A and increments processed.Adds 1 to count of total standard vehicles.
                         standard_vehicle = standard_vehicle + 1;                //If no available free space, outputs  message and increments reject
                         printf("Park in Zone A\n");
                         processed = processed + 1;
@@ -81,7 +81,7 @@ int main() {    //Start of main function
                     if (zoneA_cap >= 2) {                                       //by one to show parking of vehicle was successful and decrements value of ZoneA capacity by 2 to update left 
                         success = success + 1;                                  //amount of space. Outputs to park in zone A and increments processed. If no available free space, outputs
                         zoneA_cap = zoneA_cap - 2;                              //message and increments reject. Adds 1 to count of total large vehicles if accepted.
-                        printf("Remaining Capacity: %d\n", zoneA_cap);
+                        printf("Remaining Capacity in Zone A: %d\n", zoneA_cap);
                         printf("Park in Zone A\n");
                         large_vehicle = large_vehicle + 1;
                         processed = processed + 1;
@@ -96,12 +96,12 @@ int main() {    //Start of main function
                     if (zoneB_cap >= 1) {
                         success = success + 1;
                         zoneB_cap = zoneB_cap - 1;
-                        printf("Remaining space: %d\n", zoneB_cap);
+                        printf("Remaining space in Zone B: %d\n", zoneB_cap);
                         standard_vehicle = standard_vehicle + 1;                //Works the same as above mentioned 2 comments but for zone B
                         processed = processed + 1;
                         printf("Park in Zone B\n");
                     } else {
-                        printf("No available space\n");
+                        printf("No available space in Zone B\n");
                         reject = reject + 1;
                         processed = processed + 1;
                     }
@@ -109,12 +109,12 @@ int main() {    //Start of main function
                     if (zoneB_cap >= 2) {
                         success = success + 1;
                         zoneB_cap = zoneB_cap - 2;
-                        printf("Remaining space: %d\n", zoneB_cap);
+                        printf("Remaining space in Zone B: %d\n", zoneB_cap);
                         large_vehicle = large_vehicle + 1;
                         processed = processed + 1;
                         printf("Park in Zone B\n");
                     } else {
-                        printf("No available space\n");
+                        printf("No available space in Zone B\n");
                         reject = reject + 1;
                         processed = processed + 1;
                     }
@@ -124,12 +124,12 @@ int main() {    //Start of main function
                     if (zoneC_cap >= 1) {
                         success = success + 1;
                         zoneC_cap = zoneC_cap - 1;
-                        printf("Remaining space: %d\n", zoneC_cap);
+                        printf("Remaining space in Zone C: %d\n", zoneC_cap);
                         standard_vehicle = standard_vehicle + 1;                //(Check comment above) Works for zone C
                         processed = processed + 1;
                         printf("Park in Zone C\n");                             
                     } else {
-                        printf("No available space\n");
+                        printf("No available space in Zone C\n");
                         reject = reject + 1;
                         processed = processed + 1;
                     }
@@ -137,12 +137,12 @@ int main() {    //Start of main function
                     if (zoneC_cap >= 2) {
                         success = success + 1;
                         zoneC_cap = zoneC_cap - 2;
-                        printf("Remaining space: %d\n", zoneC_cap);
+                        printf("Remaining space in Zone C: %d\n", zoneC_cap);
                         large_vehicle = large_vehicle + 1;
                         processed = processed + 1;
                         printf("Park in Zone C\n");
                     } else {
-                        printf("No available space\n");
+                        printf("No available space in Zone C\n");
                         reject = reject + 1;
                         processed = processed + 1;
                     }
@@ -156,7 +156,7 @@ int main() {    //Start of main function
     }
 
     // Print Summary
-    printf("Summary:\n");
+    printf("\n \nSummary:\n");
     printf("Total number of vehicles: %d\n", processed);
     printf("Total accepted vehicles: %d\n", success);
     printf("Total rejected vehicles: %d\n", reject);

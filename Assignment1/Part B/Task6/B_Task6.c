@@ -40,11 +40,12 @@ int main() {    //Start of main function
     printf("Have parking membership? (Y or N): ");
     scanf(" %c", &membership);
 
-    printf("Do you have disabled-person priority status?: ");
+    printf("Do you have disabled-person priority status? (Y or N): ");
     scanf(" %c", &disabled_status);
 
-    printf("Is charging station available?: ");
+    printf("Is charging station available? (Y or N):");
     scanf(" %c", &station_available);
+    printf(" \n \n");
 
     //Assignmne tof charging prioties and whether to reject charging
     if (station_available == 'Y' || station_available == 'y') {
@@ -130,7 +131,7 @@ int main() {    //Start of main function
     printf("Parking discount: %.2f\n", discount2 + discount1);
 
     total_cost = (price - (price * (discount1 / 100.0))) + (park_charge - (park_charge * (discount2 / 100.0)));   //Calculation of total cost
-    printf("Total cost: %.2f\n", total_cost);
+    printf("\nTotal cost: %.2f\n", total_cost);
 
     return 0;   //End of main function
 }

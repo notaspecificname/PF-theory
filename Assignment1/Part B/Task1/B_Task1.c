@@ -15,11 +15,11 @@ int main(){
     nights= 0;
 
     printf("Enter Season: \n");     //Enter Season type
-    printf("1- Peak \n2- Off-Peak \n");
+    printf("1- Peak \n2- Off-Peak \n: ");
     scanf("%d",&season);            //Input season
 
     printf("Enter room type: \n");  //Enter room type
-    printf("1- Standard \n2- Deluxe \n3- Suite \n");
+    printf("1- Standard \n2- Deluxe \n3- Suite \n: ");
     scanf("%d",&room_type);         //Input room type
 
     printf("Enter number of night stays: "); //Enter nights
