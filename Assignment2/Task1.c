@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 int main(){
     int rows = 0;   //It will be assumed user enters values which having a starting point from 1
@@ -32,9 +33,9 @@ int main(){
         printf("Row %d:\t", x);
         for(int y = 0; y < cols; y++){
             if(theatre[x][y] == 0)
-                  printf("X  ");
+                  printf("_  ");
             else{
-                printf("_  ");
+                printf("X  ");
             }
         }
         printf("\n");
@@ -59,9 +60,105 @@ int main(){
     }
 
     printf("\nTotal number of available seats: %d", totalFreeCount);
+    totalFreeCount = 0;
 
     //Group booking
-    int bookingPeople = 0;
+    int bookingPeople = 0;      //Stores number of people required for booking
+    int middleRow = rows/2;
+    int targetRow = 0;
+    int startSeat = 0;
+    bool spaceFound = false;
+
     printf("\n\nEnter total number of people for group booking: ");
     scanf("%d", &bookingPeople);
+
+    while(bookingPeople <= 0 || bookingPeople > cols){
+        printf("Value entered is either less than 1 or group size exceeds number of seats in row. pls enter again: ");
+        scanf("%d", &bookingPeople);
+    }
+
+    for(int x = 0; x < rows; x++){
+        int rLess = middleRow - x;
+        int rMore = middleRow + x;
+
+        if(rLess>= 0 && rLess < rows){
+            int consCount = 0;
+            for(int col = 0; col< cols; col++){
+                if (theatre[rLess][col] == 0){
+                    consCount = consCount + 1;
+
+                    if(consCount == bookingPeople){
+                        targetRow = rLess;
+                        startSeat = col - bookingPeople + 1;
+                        spaceFound = true;
+                        break;
+                    }
+                }
+                else{
+                    consCount = 0;
+                }
+                if(spaceFound) break;
+            }
+        }
+
+        if(x> 0 && rMore >= 0 && rMore < rows){
+            int consCount = 0;
+            for(int col = 0; col< cols; col++){
+                if (theatre[rMore][col] == 0){
+                    consCount = consCount + 1;
+
+                    if(consCount == bookingPeople){
+                        targetRow = rMore;
+                        startSeat = col - bookingPeople + 1;
+                        spaceFound = true;
+                        break;
+                    }
+                }
+                    else{
+                consCount = 0;
+                }
+                if(spaceFound) break;
+            }
+        }
+    }
+
+    if(spaceFound){
+        for(int x = startSeat; x < startSeat + bookingPeople; x++){
+            theatre[targetRow][x] = 1;
+        }
+        printf("\nGroup of %d seated in Row %d, Seats %d to %d\n\n", bookingPeople, targetRow, startSeat, startSeat + bookingPeople - 1);
+
+        printf("Updated seating arrangement: \n");
+        for(int x = 0; x < rows; x++){
+            printf("Row %d:\t", x);
+            for(int y = 0; y < cols; y++){
+                if(theatre[x][y] == 0)
+                      printf("_  ");
+                else{
+                    printf("X  ");
+                }
+            }
+            printf("\n");
+        }
+         printf("\nSeats available in\n");
+        for(int x = 0; x < rows; x++){
+            rowFreeCount = 0;
+            for(int y = 0; y < cols; y++){
+    
+                if(theatre[x][y] == 0){
+                    rowFreeCount = rowFreeCount + 1;
+                }
+            }
+            printf("Row: %d: %d\n",x,rowFreeCount);
+            totalFreeCount = totalFreeCount + rowFreeCount;
+            
+        }
+        printf("\nTotal number of available seats: %d\n", totalFreeCount);
+    }
+    else{
+        printf("\nBooking unsuccessful! No row contains %d consecutive available seats. Seating plan remains unchanged.\n", bookingPeople);
+    }
+
+    
+
 }
