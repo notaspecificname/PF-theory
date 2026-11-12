@@ -73,7 +73,7 @@ void tempAnalysis(int rows, int cols, int *grid){
             if(grid[x * cols + y] > 40){        //Sums amount of times temps reached 40 or above
                 critCount++;
             }
-
+            
             if(grid[x * cols + y] >= 35 && grid[x * cols + y] <= 39){       //Sums amount of times temps sat between 40 and 35(inclusive)
                 warnCount++;
             }
