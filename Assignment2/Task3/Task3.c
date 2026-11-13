@@ -107,7 +107,6 @@ void tempAnalysis(int rows, int cols, int *grid){
 void highestAverage(int rows, int cols, int *grid){
     float highestAverage = -1;
     int highestSensor  = 0;
-    float average = 0;
     
     for(int x = 0; x < rows; x++){
         int sum = 0;
